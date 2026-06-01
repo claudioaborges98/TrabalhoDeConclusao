@@ -1,7 +1,7 @@
-import ServicoDePagamento from '../src/ServicoDePagamento.js';
+import  ServicoDePagamento  from '../src/ServicoDePagamento.js';
 import assert from 'node:assert';
 
-describe('Testes da classe ServicoDePagamento', () => {
+describe('Testes da classe ServicoDePagamento (ESM)', () => {
 
   it('Deve classificar o pagamento como "cara" se o valor for maior que 100', () => {
     const servico = new ServicoDePagamento();
@@ -12,34 +12,33 @@ describe('Testes da classe ServicoDePagamento', () => {
     servico.pagar(codigo, empresa, valor);
     const resultado = servico.consultarUltimoPagamento();
 
-    assert.strictEqual(resultado.categoria, 'cara');
-    assert.strictEqual(resultado.valor, 156.87);
-    assert.strictEqual(resultado.empresa, 'Samar');
+    assert.equal(resultado.categoria, 'cara');
+    assert.equal(resultado.valor, 156.87);
+    assert.equal(resultado.empresa, 'Samar');
   });
 
   it('Deve classificar o pagamento como "padrão" se o valor for menor ou igual a 100', () => {
-
     const servico = new ServicoDePagamento();
     const codigo = '1111-2222-3333';
-    const empresa = 'Mercadinho';
+    const empresa = 'NIKE';
     const valor = 50.00;
 
     servico.pagar(codigo, empresa, valor);
     const resultado = servico.consultarUltimoPagamento();
 
-    assert.strictEqual(resultado.categoria, 'padrão');
-    assert.strictEqual(resultado.valor, 50.00);
+    assert.equal(resultado.categoria, 'padrão');
+    assert.equal(resultado.valor, 50.00);
   });
 
   it('Deve retornar apenas o ÚLTIMO pagamento realizado', () => {
     const servico = new ServicoDePagamento();
     
     servico.pagar('111', 'Empresa A', 45.00);
-    servico.pagar('222', 'Empresa B', 200.00); // Este é o último
+    servico.pagar('222', 'Empresa B', 200.00);
     
     const resultado = servico.consultarUltimoPagamento();
 
-    assert.strictEqual(resultado.empresa, 'Empresa B');
-    assert.strictEqual(resultado.categoria, 'cara');
+    assert.equal(resultado.empresa, 'Empresa B');
+    assert.equal(resultado.categoria, 'cara');
   });
 });
