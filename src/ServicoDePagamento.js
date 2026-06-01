@@ -6,10 +6,8 @@ export default class ServicoDePagamento {
   }
 
   pagar(codigoBarras, empresa, valor) {
-    // Criamos a variável que vai armazenar a categoria
     let categoria;
 
-    // Substituição do operador ternário pelo if...else tradicional
     if (valor > 100.00) {
       categoria = 'cara';
     } else {
