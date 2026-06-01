@@ -6,7 +6,16 @@ export default class ServicoDePagamento {
   }
 
   pagar(codigoBarras, empresa, valor) {
-    const categoria = valor > 100.00 ? 'cara' : 'padrão';
+    // Criamos a variável que vai armazenar a categoria
+    let categoria;
+
+    // Substituição do operador ternário pelo if...else tradicional
+    if (valor > 100.00) {
+      categoria = 'cara';
+    } else {
+      categoria = 'padrão';
+    }
+
     const novoPagamento = {
       codigoBarras: codigoBarras,
       empresa: empresa,
@@ -20,7 +29,7 @@ export default class ServicoDePagamento {
 
   consultarUltimoPagamento() {
     if (this.#pagamentos.length === 0) {
-      return null; // Retorna null se nenhum pagamento foi feito ainda
+      return null;
     }
     return this.#pagamentos[this.#pagamentos.length - 1];
   }
