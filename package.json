@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "test:ci": "node -e \"const fs = await import('fs'); fs.mkdirSync('test-results', { recursive: true });\" && mocha --reporter xunit --reporter-options output=test-results/TESTS-results.xml"
+    "test:ci": "node -e \"(async () => { const fs = await import('fs'); fs.mkdirSync('test-results', { recursive: true }); })()\" && mocha --reporter xunit --reporter-options output=test-results/TESTS-results.xml"
   },
   "keywords": [],
   "author": "",
