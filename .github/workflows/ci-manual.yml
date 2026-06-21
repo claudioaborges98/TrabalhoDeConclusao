@@ -1,8 +1,7 @@
-name: CI - Node.js Teste e Relatório (Push)
+name: CI - Node.js Teste e Relatório (Manual)
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -24,6 +23,7 @@ jobs:
       - run: mkdir -p test-results
       - run: npm run test:ci
       - name: Upload test report artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: junit-test-report-${{ matrix.node-version }}

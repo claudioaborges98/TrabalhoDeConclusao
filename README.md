@@ -15,17 +15,21 @@ A pipeline atende aos seguintes requisitos:
 
 ## Estrutura da solução
 
-O workflow principal está em `.github/workflows/node.js.yml`.
+A solução usa três workflows separados em `.github/workflows`:
 
-### Disparadores do workflow
+- `node.js.yml` — execução automática em `push` na branch `main`
+- `ci-manual.yml` — execução manual via `workflow_dispatch`
+- `ci-schedule.yml` — execução agendada semanalmente
 
-- `push` em `main`
-- `workflow_dispatch` para execução manual
-- `schedule` para execução agendada toda segunda-feira às 01:00 UTC
+### Disparadores dos workflows
+
+- `push` em `main` no workflow `node.js.yml`
+- `workflow_dispatch` no workflow `ci-manual.yml`
+- `schedule` no workflow `ci-schedule.yml` para execução toda segunda-feira às 01:00 UTC
 
 ### Job principal
 
-O job `test` realiza:
+Cada workflow possui o job `test`, que realiza:
 
 1. Checkout do código
 2. Configuração do Node.js nas versões `18.x`, `20.x` e `22.x`
