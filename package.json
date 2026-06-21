@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "test:ci": "node -e \"import { mkdirSync } from 'node:fs'; mkdirSync('test-results', { recursive: true });\" && mocha --reporter xunit --reporter-options output=test-results/TESTS-results.xml"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
-  "dependencies": {
+  "devDependencies": {
     "mocha": "^11.7.6"
   }
 }
